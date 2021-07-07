@@ -110,6 +110,7 @@ end
 
 -- {{{ Menu
 -- Create a launcher widget and a main menu
+
 myawesomemenu = {
    { "Guía de teclas", function() hotkeys_popup.show_help(nil, awful.screen.focused()) end, menubar.utils.lookup_icon("preferences-desktop-keyboard-shortcuts") },
    { "Manual", terminal .. " -e man awesome", menubar.utils.lookup_icon("system-help") },
@@ -126,7 +127,7 @@ myexitmenu = {
     { "Apagar", "poweroff", menubar.utils.lookup_icon("system-shutdown") }
 }
 
-local menu_awesome = { "awesome", myawesomemenu, "/home/omar/.config/awesome/themes/cesious/icons/manjaro32.png" }
+local menu_awesome = { "Awesome", myawesomemenu, "/home/omar/.config/awesome/themes/cesious/icons/manjaro16.png" }
 local menu_terminal = { "Abrir terminal", terminal }
 
 if has_fdo then
@@ -157,7 +158,7 @@ else
 end
 
 
-mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon,
+mylauncher = awful.widget.launcher({ image = "/home/omar/.config/awesome/themes/cesious/icons/manjaro32.png",
                                      menu = mymainmenu })
 
 
