@@ -51,12 +51,10 @@ end
 
 -- {{{ Variable definitions
 -- Themes define colours, icons, font and wallpapers.
-beautiful.init("~/.config/awesome/cesious/theme.lua")
+beautiful.init("~/.config/awesome/themes/cesious/theme.lua")
 beautiful.icon_theme = "Papirus-Dark"
 beautiful.bg_normal = "#141A1B"
 beautiful.bg_focus = "#222B2E"
-beautiful.titlebar_close_button_normal = "~/.config/awesome/cesious/titlebar/close_normal_adapta.png"
-beautiful.titlebar_close_button_focus = "~/.config/awesome/cesious/titlebar/close_focus_adapta.png"
 beautiful.font              = "JetBrainsMono NF Regular 10"
 beautiful.notification_font = "Noto Sans Bold 14"
 
