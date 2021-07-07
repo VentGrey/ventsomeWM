@@ -111,10 +111,10 @@ end
 -- {{{ Menu
 -- Create a launcher widget and a main menu
 myawesomemenu = {
-   { "Guía de teclas", function() hotkeys_popup.show_help(nil, awful.screen.focused()) end },
-   { "Manual", terminal .. " -e man awesome" },
-   { "Editar Configuración", editor_cmd .. " " .. awesome.conffile },
-   { "Reiniciar AwesomeWM", awesome.restart },
+   { "Guía de teclas", function() hotkeys_popup.show_help(nil, awful.screen.focused()) end, menubar.utils.lookup_icon("preferences-desktop-keyboard-shortcuts") },
+   { "Manual", terminal .. " -e man awesome", menubar.utils.lookup_icon("system-help") },
+   { "Editar Configuración", editor_cmd .. " " .. awesome.conffile, menubar.utils.lookup_icon("accessories-text-editor") },
+   { "Reiniciar AwesomeWM", awesome.restart, menubar.utils.lookup_icon("system-restart") },
    { "Cerrar Sesión", function() awesome.quit() end, menubar.utils.lookup_icon("system-log-out") },
 }
 
@@ -126,14 +126,25 @@ myexitmenu = {
     { "Apagar", "poweroff", menubar.utils.lookup_icon("system-shutdown") }
 }
 
-local menu_awesome = { "Awesome", myawesomemenu, "~/.config/awesome/cesious/icons/manjaro64.png" }
+local menu_awesome = { "awesome", myawesomemenu, "/home/omar/.config/awesome/themes/cesious/icons/manjaro32.png" }
 local menu_terminal = { "Abrir terminal", terminal }
 
 if has_fdo then
     mymainmenu = freedesktop.menu.build({
         icon_size = 32,
-        before = { menu_awesome },
-        after =  { menu_terminal }
+        before ={
+        { "Terminal", terminal, menubar.utils.lookup_icon("utilities-terminal") },
+        { "Browser", browser, menubar.utils.lookup_icon("internet-web-browser") },
+        { "Files", filemanager, menubar.utils.lookup_icon("system-file-manager") },
+            { menu_awesome },
+        },
+
+        after = {
+            { "Awesome", myawesomemenu, "/home/omar/.config/awesome/themes/cesious/icons/manjaro32.png"},
+            { "Exit", myexitmenu, menubar.utils.lookup_icon("system-shutdown") },
+            { menu_terminal },
+        }
+
     })
 else
     mymainmenu = awful.menu({
