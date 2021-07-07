@@ -262,6 +262,9 @@ awful.screen.connect_for_each_screen(function(s)
     local batteryarc_widget = require("awesome-wm-widgets.batteryarc-widget.batteryarc")
     -- Volume Widget
     local volume_widget = require('awesome-wm-widgets.volume-widget.volume')
+    -- Network Speed Widget
+    local net_speed_widget = require("awesome-wm-widgets.net-speed-widget.net-speed")
+
 
     -- Add widgets to the wibox
     s.mywibox:setup {
@@ -281,6 +284,7 @@ awful.screen.connect_for_each_screen(function(s)
             wibox.widget.systray({
                     base_size = 24,
             }),
+            net_speed_widget(),
             mytextclock,
             volume_widget({
                     mixer_cmd = "pavucontrol",
