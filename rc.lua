@@ -60,6 +60,8 @@ beautiful.notification_font = "Noto Sans Bold 14"
 
 -- This is used later as the default terminal and editor to run.
 browser = "brave-browser" or "firefox"
+filemanager = "exo-open --launch FileManager" or "thunar"
+gui_editor = "mousepad"
 terminal = "tilix"
 editor = os.getenv("EDITOR") or "editor"
 editor_cmd = terminal .. " -e " .. editor
@@ -242,6 +244,9 @@ awful.screen.connect_for_each_screen(function(s)
     -- Each screen has its own tag table.
     awful.tag({ "", "", "", "", "", "", ""}, s, awful.layout.layouts[1])
 
+    -- Taglist font
+    beautiful.taglist_font="JetBrainsMono NF 18"
+
     -- Create a promptbox for each screen
     s.mypromptbox = awful.widget.prompt()
     -- Create an imagebox widget which will contain an icon indicating which layout we're using.
@@ -301,6 +306,7 @@ awful.screen.connect_for_each_screen(function(s)
                     widget_type = 'arc',
                     size = 24,
             }),
+            separator,
             batteryarc_widget({
                     font = "JetBrainsMono NF Regular 8",
                     show_current_level = true,
@@ -312,6 +318,7 @@ awful.screen.connect_for_each_screen(function(s)
                     warning_msg_text = "La bateria de la laptop esta debajo del 15%.",
                     warning_msg_position = "top_right"
             }),
+            separator,
             s.mylayoutbox,
         },
     }
@@ -395,8 +402,12 @@ globalkeys = gears.table.join(
     awful.key({ modkey,           }, "space", function () awful.layout.inc( 1)                end,
               {description = "select next", group = "layout"}),
     awful.key({ modkey, "Shift"   }, "space", function () awful.layout.inc(-1)                end,
-              {description = "select previous", group = "layout"}),
-
+        {description = "select previous", group = "layout"}),
+    -- Volume Keys
+    awful.key({}, "XF86AudioRaiseVolume", function() os.execute("pactl set-sink-volume 0 +5%") end),
+    awful.key({}, "XF86AudioLowerVolume", function() os.execute("pactl set-sink-volume 0 -5%") end),
+    awful.key({}, "XF86AudioMute", function() os.execute("pactl set-sink-mute 0 toggle") end),
+    -- Rofi Spawn
     awful.key({ modkey, "Control" }, "n",
               function ()
                   local c = awful.client.restore()
