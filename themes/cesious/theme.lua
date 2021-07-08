@@ -23,8 +23,8 @@ theme.fg_minimize = "#ffffff"
 
 theme.border_width  = 1
 theme.border_normal = "#000000"
-theme.border_focus  = "#16A085"
-theme.border_marked = "#16A085"
+theme.border_focus  = "#F1F1F1"
+theme.border_marked = "#F1F1F1"
 
 theme.hotkeys_modifiers_fg = "#2EB398"
 

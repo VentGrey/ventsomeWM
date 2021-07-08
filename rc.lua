@@ -65,6 +65,7 @@ gui_editor = "mousepad"
 terminal = "tilix"
 editor = os.getenv("EDITOR") or "editor"
 editor_cmd = terminal .. " -e " .. editor
+mediaplayer = "vlc"
 
 -- Default modkey.
 -- Usually, Mod4 is the key with a logo between Control and Alt.
@@ -270,7 +271,12 @@ awful.screen.connect_for_each_screen(function(s)
 
 
     -- Create the wibox
-    s.mywibox = awful.wibar({ position = "top", height=24, ontop=true, screen = s })
+    s.mywibox = awful.wibar({
+            position = "top",
+            height=26,
+            ontop=true,
+            screen = s
+    })
 
     -- ==== Awesome Widgets ====
     -- Battery Widget
@@ -322,7 +328,8 @@ awful.screen.connect_for_each_screen(function(s)
                     low_level_color = "#F75341",
                     warning_msg_title = "Bateria Baja!",
                     warning_msg_text = "La bateria de la laptop esta debajo del 15%.",
-                    warning_msg_position = "top_right"
+                    warning_msg_position = "top_right",
+                    show_notification_mode = "on_click"
             }),
             separator,
             s.mylayoutbox,
